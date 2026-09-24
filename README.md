@@ -1,1 +1,40 @@
 # FitAI
+
+Aplicación en español para registrar alimentos y macros, crear rutinas, medir sesiones con temporizador y consultar el progreso por grupo muscular. Los registros personales se guardan en el navegador.
+
+## Publicar gratis en GitHub Pages
+
+1. Descomprime el ZIP y sube el contenido directamente a la raíz del repositorio, de modo que `index.html` quede en la raíz.
+2. En GitHub, abre el repositorio y entra en **Settings → Pages**.
+3. En **Build and deployment**, elige **Deploy from a branch**.
+4. Selecciona la rama `main` y la carpeta `/(root)`, y pulsa **Save**.
+5. Cuando GitHub termine la publicación, abre el enlace que aparece en esa misma página.
+
+## Usar el asistente sin pagar una API
+
+1. Abre FitAI y entra en **FitAI**.
+2. Escribe una pregunta o pulsa una de las sugerencias.
+3. FitAI abre ChatGPT en otra pestaña y copia un mensaje preparado con tu pregunta, tus objetivos, los macros y alimentos registrados hoy y hasta cinco entrenamientos recientes.
+4. En ChatGPT, pega el texto con **Ctrl+V** y envíalo.
+
+No se envían datos automáticamente desde FitAI: tú decides pegarlos y mandarlos. ChatGPT tiene una modalidad gratuita, sujeta a límites que pueden cambiar. La API de OpenAI no se usa y no hace falta configurar una clave.
+
+## Probar en tu ordenador
+
+Necesitas Node.js 20 o posterior. Desde la carpeta del proyecto, ejecuta `npm start` y abre `http://localhost:4173`.
+
+## Catálogo de alimentos
+
+data/foods.json incluye 1.000 productos asociados a tiendas españolas (939 asociados a Mercadona y 61 a Carrefour en esta versión), más dos alimentos genéricos de referencia: arroz blanco largo crudo y pechuga de pollo cruda sin piel. Los productos incluyen macros por 100 g y un enlace a su fuente. El importador `scripts/import-foods.mjs` conserva el mínimo de 1.000 productos de supermercado y añade siempre los dos alimentos de referencia.
+
+Los productos de tienda proceden de Open Food Facts, una base de datos colaborativa; no son una exportación ni una verificación oficial de las apps de Mercadona o Carrefour. Contrasta siempre los macros con la etiqueta del envase. Los dos alimentos genéricos enlazan a USDA FoodData Central.
+
+## Funciones
+
+- Objetivos diarios de calorías y macros, registro por comidas y alimentos propios.
+- Biblioteca de ejercicios, ejercicios propios y rutinas guardadas.
+- Temporizador de entrenamiento con series, repeticiones, RIR y carga.
+- Historial y progreso por grupo muscular.
+- Resumen de FitAI listo para copiar a ChatGPT.
+
+El asistente ofrece información general y no sustituye a profesionales sanitarios.
