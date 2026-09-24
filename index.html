@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5f5f0" />
+  <meta name="description" content="FitAI — alimentación y entrenamiento en un solo lugar." />
+  <title>FitAI — Entrena con intención</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="FitAI inicio" data-page="dashboard">
+        <span class="brand-mark">F</span>
+        <span class="brand-name">fit<span>ai</span></span>
+      </a>
+      <div class="sidebar-label">ESPACIO PERSONAL</div>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">◫</span><span>Inicio</span></button>
+        <button class="nav-item" data-page="nutrition"><span class="nav-icon">◉</span><span>Alimentación</span></button>
+        <button class="nav-item" data-page="training"><span class="nav-icon">↗</span><span>Entrenamiento</span></button>
+        <button class="nav-item" data-page="progress"><span class="nav-icon">⌁</span><span>Progreso</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="coach-card">
+          <div class="coach-spark">✳</div>
+          <div><strong>Tu coach IA</strong><p>Resuelve dudas y planifica mejor.</p></div>
+          <button class="coach-link" data-page="assistant" aria-label="Abrir asistente">↗</button>
+        </div>
+        <button class="nav-item settings-link backup-nav-item" data-action="backup"><span class="nav-icon">⇅</span><span>Copiar o transferir datos</span></button>
+        <button class="nav-item settings-link" data-action="targets"><span class="nav-icon">⚙</span><span>Objetivos diarios</span></button>
+        <div class="profile">
+          <div class="avatar">J</div>
+          <div class="profile-copy"><strong>Mi perfil</strong><small>Plan personal</small></div>
+          <span class="profile-more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">F</span><span class="brand-name">fit<span>ai</span></span></div>
+        <div class="breadcrumbs"><span>Mi espacio</span><span class="crumb-sep">/</span><strong id="page-title">Inicio</strong></div>
+        <div class="topbar-right">
+          <div class="today-chip"><span class="today-dot"></span><span id="today-label"></span></div>
+          <button class="icon-button" data-action="backup" title="Guardar o transferir mis datos" aria-label="Guardar o transferir mis datos">⇅</button>
+          <button class="icon-button" data-action="targets" title="Editar objetivos" aria-label="Editar objetivos">⚙</button>
+        </div>
+      </header>
+
+      <section class="page-view active" id="page-dashboard">
+        <div class="welcome-row">
+          <div class="welcome-copy"><div class="eyebrow">TU ESPACIO, TU RITMO</div><h1>Hoy cuenta<span class="period">.</span></h1><p class="subhead">Un paso más cerca de tu objetivo.</p><div class="hero-actions"><button class="hero-action" data-action="add-food"><span>＋</span> Registrar comida</button><button class="hero-action hero-action-quiet" data-page="training"><span>↗</span> Empezar rutina</button></div></div>
+          <div class="streak-pill"><span>✦</span> <strong id="streak-count">0</strong> días de constancia</div>
+        </div>
+        <div class="dashboard-grid">
+          <article class="card nutrition-overview">
+            <div class="card-heading">
+              <div><div class="eyebrow">ALIMENTACIÓN · HOY</div><h2>Tu energía diaria</h2></div>
+              <button class="text-link" data-page="nutrition">Ver diario <span>↗</span></button>
+            </div>
+            <div class="calorie-row">
+              <div class="calorie-ring" id="calorie-ring"><div><strong id="calories-left">2200</strong><small>kcal restantes</small></div></div>
+              <div class="calorie-meta"><strong><span id="calories-eaten">0</span><small> / <span id="calories-goal">2200</span> kcal</small></strong><span class="muted">Consumidas hoy</span><div class="mini-progress"><span id="calorie-progress"></span></div></div>
+            </div>
+            <div class="macro-summary" id="dashboard-macros"></div>
+            <button class="button button-dark full-width" data-action="add-food"><span>＋</span> Añadir alimento</button>
+          </article>
+          <article class="card workout-overview">
+            <div class="card-heading"><div><div class="eyebrow">MOVIMIENTO · HOY</div><h2>¿Entrenamos?</h2></div><div class="round-icon">↗</div></div>
+            <div class="workout-illustration"><div class="ill-line il1"></div><div class="ill-line il2"></div><div class="ill-dot"></div><div class="ill-arc"></div><span>Fuerza</span></div>
+            <div class="workout-card-foot"><div><strong id="routine-count">0</strong><small>rutinas guardadas</small></div><button class="button button-light" data-page="training">Ir a entrenar <span>→</span></button></div>
+          </article>
+          <article class="card recent-card">
+            <div class="card-heading"><div><div class="eyebrow">ALIMENTACIÓN</div><h2>Últimos alimentos</h2></div><button class="text-link" data-page="nutrition">Ver todos <span>↗</span></button></div>
+            <div id="recent-foods" class="recent-list"></div>
+          </article>
+          <article class="card coach-overview">
+            <div class="coach-orbit"><div class="orbit-ring"></div><div class="orbit-dot">✳</div><div class="orbit-core">F</div></div>
+            <div><div class="eyebrow">ASISTENTE INTELIGENTE</div><h2>Una idea para hoy</h2><p>Pregúntame sobre tus macros, ejercicios o cómo organizar tu semana.</p><button class="text-link" data-page="assistant">Hablar con FitAI <span>↗</span></button></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-view" id="page-nutrition">
+        <div class="page-intro">
+          <div><div class="eyebrow">ALIMENTACIÓN</div><h1>Tu diario<span class="period">.</span></h1><p class="subhead">Cada elección suma. Registra tus alimentos de hoy.</p></div>
+          <button class="button button-dark" data-action="add-food"><span>＋</span> Añadir alimento</button>
+        </div>
+        <div class="nutrition-layout">
+          <div class="nutrition-main">
+            <article class="card day-card">
+              <div class="card-heading"><div><div class="eyebrow">RESUMEN DEL DÍA</div><h2>Objetivos de macros</h2></div><button class="icon-button" data-action="targets" title="Editar objetivos">✎</button></div>
+              <div class="macro-cards" id="nutrition-macros"></div>
+              <div class="calorie-strip"><div><span class="strip-icon">◌</span><div><strong><span id="nutrition-eaten">0</span> kcal</strong><small>consumidas</small></div></div><div class="strip-separator"></div><div><span class="strip-icon muted-icon">◎</span><div><strong><span id="nutrition-left">2200</span> kcal</strong><small>disponibles</small></div></div><div class="strip-track"><span id="nutrition-progress"></span></div></div>
+            </article>
+            <div class="meal-section" id="meal-sections"></div>
+          </div>
+          <aside class="nutrition-side">
+            <article class="card tips-card"><div class="eyebrow">TU OBJETIVO</div><h3>Objetivo diario</h3><p>Personaliza tus metas para que se adapten a ti.</p><div id="target-summary" class="target-summary"></div><button class="button button-light full-width" data-action="targets">Editar objetivos</button></article>
+            <article class="card source-card"><span class="source-leaf">✳</span><div><div class="eyebrow">CATÁLOGO</div><h3>Datos claros</h3><p>Los macros se muestran por cada 100 g y se escalan según la cantidad registrada.</p><small>Los productos pueden variar por lote y país. Comprueba siempre la etiqueta.</small></div></article>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page-view" id="page-training">
+        <div class="page-intro">
+          <div><div class="eyebrow">ENTRENAMIENTO</div><h1>Fuerza en marcha<span class="period">.</span></h1><p class="subhead">Crea tus rutinas y registra cada sesión.</p></div>
+          <button class="button button-dark" data-action="new-routine"><span>＋</span> Nueva rutina</button>
+        </div>
+        <div id="active-workout-host"></div>
+        <div class="training-layout">
+          <div><article class="card routines-card"><div class="card-heading"><div><div class="eyebrow">TU PLAN</div><h2>Rutinas</h2></div><span class="count-badge" id="routine-badge">0</span></div><div id="routine-list" class="routine-list"></div></article></div>
+          <aside><article class="card exercise-card"><div class="card-heading"><div><div class="eyebrow">BIBLIOTECA</div><h2>Ejercicios</h2></div></div><label class="search-field"><span>⌕</span><input id="exercise-search" type="search" placeholder="Busca un ejercicio..." /></label><div id="exercise-browser" class="exercise-browser"></div><button class="button button-light full-width" data-action="new-exercise">＋ Añadir ejercicio propio</button></article></aside>
+        </div>
+      </section>
+
+      <section class="page-view" id="page-progress">
+        <div class="page-intro"><div><div class="eyebrow">EVOLUCIÓN</div><h1>Tu progreso<span class="period">.</span></h1><p class="subhead">La constancia deja huella. Mira todo lo que llevas hecho.</p></div><div class="period-select">Últimas 4 semanas⌄</div></div>
+        <div class="progress-grid"><article class="card progress-chart-card"><div class="card-heading"><div><div class="eyebrow">VOLUMEN DE ENTRENAMIENTO</div><h2>Series por grupo muscular</h2></div></div><div id="muscle-chart" class="muscle-chart"></div><div class="chart-legend"><span class="legend-dot"></span> Series completadas</div></article><article class="card personal-best-card"><div class="eyebrow">RESUMEN</div><h2>Tu actividad</h2><div id="activity-summary" class="activity-stats"></div></article></div>
+        <article class="card history-card"><div class="card-heading"><div><div class="eyebrow">HISTORIAL</div><h2>Entrenamientos completados</h2></div></div><div id="workout-history" class="history-list"></div></article>
+      </section>
+
+      <section class="page-view" id="page-assistant">
+        <div class="page-intro assistant-intro"><div><div class="eyebrow">FITAI · TU COACH PERSONAL</div><h1>Hablemos<span class="period">.</span></h1><p class="subhead">Consulta una IA gratis con el resumen de tu alimentación y entrenamiento.</p></div><div class="ai-status"><span class="status-pulse"></span><span>ChatGPT en otra pestaña</span></div></div>
+        <div class="assistant-layout">
+          <div class="chat-panel card">
+            <div class="chat-top"><div class="ai-avatar">✳</div><div><strong>ChatGPT gratis</strong><small>Se abre en otra pestaña</small></div></div>
+            <div class="chat-messages"><div class="chat-message assistant">FitAI preparará un resumen de tus objetivos, lo que has comido hoy y tus cinco últimos entrenamientos. Copiaremos ese texto para que lo pegues en ChatGPT.</div></div>
+            <div class="suggestion-row"><button class="suggestion" data-prompt="¿Cómo puedo completar mis macros hoy?">Completar mis macros</button><button class="suggestion" data-prompt="Dame una rutina breve para hoy.">Rutina para hoy</button><button class="suggestion" data-prompt="¿Qué significa entrenar con RIR 2?">¿Qué es el RIR?</button></div>
+            <form id="external-ai-form" class="external-ai-form"><label for="external-ai-question">¿Qué quieres preguntarle?</label><textarea id="external-ai-question" rows="3" placeholder="Ej. ¿Qué cena me ayuda a acercarme a mis macros?" aria-label="Escribe tu pregunta"></textarea><button class="button button-dark full-width" type="submit">Copiar resumen y abrir ChatGPT ↗</button></form>
+            <p class="chat-note">No se envían datos automáticamente. Al pegar el texto en ChatGPT, tú decides qué compartir. El plan gratis puede tener límites.</p>
+          </div>
+          <aside class="assistant-side"><article class="card assistant-context"><div class="eyebrow">CONTEXTO DE HOY</div><h3>Tu punto de partida</h3><div id="assistant-context"></div></article><article class="card assistant-note"><div class="ai-note-mark">✳</div><h3>Sin API de pago</h3><p>FitAI prepara el contexto en tu dispositivo. ChatGPT solo lo recibe cuando tú lo pegas y envías.</p></article></aside>
+        </div>
+      </section>
+
+      <footer class="app-footer"><span>FitAI <span class="footer-dot">•</span> Entrena con intención</span><span>Hecho para avanzar, un día a la vez.</span></footer>
+    </main>
+  </div>
+
+  <nav class="mobile-nav" aria-label="Navegación móvil">
+    <button class="nav-item active" data-page="dashboard"><span class="nav-icon">◫</span><small>Inicio</small></button>
+    <button class="nav-item" data-page="nutrition"><span class="nav-icon">◉</span><small>Comida</small></button>
+    <button class="nav-item" data-page="training"><span class="nav-icon">↗</span><small>Entreno</small></button>
+    <button class="nav-item" data-page="progress"><span class="nav-icon">⌁</span><small>Progreso</small></button>
+    <button class="nav-item" data-page="assistant"><span class="nav-icon">✳</span><small>FitAI</small></button>
+  </nav>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
+
+
+
